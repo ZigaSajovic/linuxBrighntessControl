@@ -14,10 +14,6 @@ sudo chmod u+x config.sh
 
 The script will (optionally) also execute the ```set_hotkeys.py``` script, that will create keyboard shortcuts according to the ```keys.config``` file.
 
-The added hotkeys can be found in ```System Settings -> Keyboard -> Shortcuts -> Custom Shortcuts```
-
-![example](example.png)
-
 ### Example: Default keybindings in keys.config
 
 The format of a line in the file is
@@ -33,7 +29,11 @@ The default bindings in the ```keys.config``` are
 >brightnessDownMedium 0.75 <Control>F5  
 >brightnessUpMedium 1.25 <Control>F6
 
-You can change the contents of the ```keys.config``` file to the bindings of your choosing.
+After running the script with the default ```keys.config```, the added hotkeys can be found in ```System Settings -> Keyboard -> Shortcuts -> Custom Shortcuts```
+
+![example](example.png)
+
+Note that you can change the contents of the ```keys.config``` file to the bindings of your choosing.
 
 ## Lone use of script
 
