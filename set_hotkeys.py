@@ -10,6 +10,7 @@ call=lambda cmd:sp.check_output(cmd).decode()
 tmp_keys=call(["gsettings", "get"]+keys_.split(" "))
 keys=eval(tmp_keys)if tmp_keys[0]=="[" else []
 get_command=lambda x:"./"+os.path.join("/".join(os.getcwd().split("/")[3:]),script_name)+(" %s"%x)
+current_keys=list(map(lambda x:eval(call(["/bin/bash","-c","gsettings get "+subkey1+item_s+x.split("/")[-2]+"/ binding"])),keys))
 try:
   with open(keys_list,"r") as f:
     commands=[]
@@ -17,8 +18,8 @@ try:
       if line[0]=="#":
         continue
       name, command, key=line.strip().split(" ")
-      if any(map(lambda x: key in x,keys)):
-        print("The hotkey-combination %s already in use."%key)
+      if any(map(lambda x: key in x,current_keys)):
+        print("The hotkey-combination '%s' for '%s' already in use. Replace it in the config file '%s'"%(key,name,keys_list))
         continue
       n=next((a for a,b in enumerate(map(lambda x:x.split("/")[-2],keys)) if "custom"+str(a)!=b),len(keys))
       new_hotkey=item_s+"custom"+str(n)+"/"
