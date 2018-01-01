@@ -1,8 +1,11 @@
 #!/bin/bash
-#make sure ran by sudo
-[ "$UID" -eq 0 ] || exec sudo "$0" "$(whoami)" "$@"
-
-echo "$(who | awk '{print $1}') ALL=(root) NOPASSWD: $(pwd)/brightness.sh" >>/etc/sudoers
-chown root:root brightness.sh
-chmod u+rwx brightness.sh
-chmod go-w+rx brightness.sh
+sudo chmod u+x .config_script.sh
+./.config_script.sh
+while true; do
+    read -p "Do you wish to bind the default hotkeys from the keys.config file? <y/n> " yn
+    case $yn in
+        [Yy]* )  python set_hotkeys.py; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
