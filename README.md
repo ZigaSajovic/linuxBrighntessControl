@@ -1,5 +1,7 @@
 # linuxBrightnessControl
-Script to control screen brightness, to be binded to keyboard shortcut
+Script to control screen brightness
+
+If your machine does not support native keyboard brightness control, this script can be binded as a custom hotkey.
 
 ## Configure
 
