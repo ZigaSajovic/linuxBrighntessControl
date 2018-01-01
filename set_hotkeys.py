@@ -12,8 +12,11 @@ keys=eval(tmp_keys)if tmp_keys[0]=="[" else []
 get_command=lambda x:"./"+os.path.join("/".join(os.getcwd().split("/")[3:]),script_name)+(" %s"%x)
 current_keys=list(map(lambda x:eval(call(["/bin/bash","-c","gsettings get "+subkey1+item_s+x.split("/")[-2]+"/ binding"])),keys))
 current_commands=list(map(lambda x:eval(call(["/bin/bash","-c","gsettings get "+subkey1+item_s+x.split("/")[-2]+"/ command"])),keys))
+current_names=list(map(lambda x:eval(call(["/bin/bash","-c","gsettings get "+subkey1+item_s+x.split("/")[-2]+"/ name"])),keys))
 key_map={key:command for key,command in zip(current_keys,current_commands)}
 command_map={command:key for key,command in zip(current_keys,current_commands)}
+name_map={name:key for name,key in zip(current_names,current_keys)}
+
 try:
   with open(keys_list,"r") as f:
     commands=[]
@@ -26,6 +29,9 @@ try:
         continue
       if any(map(lambda x: get_command(command) in x,current_commands)):
         print("COMMAND ERROR: The command '%s' is already binded to key '%s'. Replace it in the config file '%s'"%(get_command(command),command_map[get_command(command)],keys_list))
+        continue
+      if any(map(lambda x: name in x,current_names)):
+        print("NAME ERROR: The name '%s' is already binded to key '%s'. Replace it in the config file '%s'"%(name,name_map[name], keys_list))
         continue
       n=next((a for a,b in enumerate(map(lambda x:x.split("/")[-2],keys)) if "custom"+str(a)!=b),len(keys))
       new_hotkey=item_s+"custom"+str(n)+"/"
