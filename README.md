@@ -5,9 +5,11 @@ If your machine does not support native **keyboard brightness control**, this sc
 
 ## Installation
 
-Before usage, some configuration is needed. Run the commands bellow in the shell, from the directory containing the scripts.
+Before usage, some configuration is needed. Run the commands bellow in the shell, from the directory containing the scripts to install.
 
 ```bash
+git clone https://github.com/ZigaSajovic/linuxBrightnessControl.git
+cd linuxBrightnessControl
 sudo chmod u+x config.sh
 ./config.sh
 ```
