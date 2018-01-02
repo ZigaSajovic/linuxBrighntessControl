@@ -3,7 +3,7 @@
 [ "$UID" -eq 0 ] || exec sudo "$0" "$(whoami)" "$@"
 
 echo "Setting script privileges"
-echo "$(who | awk '{print $1}') ALL=(root) NOPASSWD: $(pwd)/brightness.sh" >>/etc/sudoers
+echo "$SUDO_USER ALL=(root) NOPASSWD: $(pwd)/brightness.sh" >>/etc/sudoers
 echo "Script now owned by root"
 chown root:root brightness.sh
 echo "Script only writable by root"
