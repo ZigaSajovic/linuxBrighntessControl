@@ -1,7 +1,7 @@
 # linuxBrightnessControl
-Script to control screen brightness for Linux
+Screen brightness control for Linux, with desktop notification support
 
-If your machine does not support native keyboard *brightness control*, this script can be *binded* as a *custom hotkey*, complete with *desktop notifications*.
+If your machine does not support native keyboard **brightness control**, this script can be **binded** as a **custom hotkey**, complete with **desktop notifications**.
 
 ## Installation
 
