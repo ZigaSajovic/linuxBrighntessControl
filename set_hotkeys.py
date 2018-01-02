@@ -23,7 +23,10 @@ try:
     for line in f:
       if line[0]=="#":
         continue
-      name, command, key=line.strip().split(" ")
+      try:
+        name, command, key=line.strip().split(" ")
+      except:
+        continue
       if any(map(lambda x: key in x,current_keys)):
         print("HOTKEY ERROR: The hotkey-combination '%s' is already binded to command '%s'. Replace it in the config file '%s'"%(key,key_map[key],keys_list))
         continue
