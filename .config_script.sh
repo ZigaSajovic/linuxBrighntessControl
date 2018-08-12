@@ -3,7 +3,11 @@
 [ "$UID" -eq 0 ] || exec sudo "$0" "$(whoami)" "$@"
 
 echo "Setting script privileges"
-echo "$SUDO_USER ALL=(root) NOPASSWD: $(pwd)/brightness.sh" >>/etc/sudoers
+toAppend="$SUDO_USER ALL=(root) NOPASSWD: $(pwd)/brightness.sh"
+if [ -z "$(cat /etc/sudoers |grep $toAppend)" ]; then
+  echo $toAppend >> /etc/sudoers
+  . ~/.zshrc
+fi
 echo "Script now owned by root"
 chown root:root brightness.sh
 echo "Script only writable by root"
